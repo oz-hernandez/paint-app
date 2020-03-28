@@ -6,9 +6,12 @@ function App() {
   return (
     <div className="App">
       {/* <DrawGrid> */}
+
       
       { /* until we have the drawgrid use div main-grid*/ }
-      <div className="main-grid"></div>
+      <div className="main-grid">
+        <canvas id="canvas"></canvas>
+      </div>
       
       <ToolPanel />
       {/* <Colors /> */}
