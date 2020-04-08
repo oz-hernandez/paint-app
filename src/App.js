@@ -1,22 +1,14 @@
 import React from 'react';
-import ToolPanel from './UI/ToolPanel'
+import DrawGrid from './UI/DrawGrid.js';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      {/* <DrawGrid> */}
-
-      
-      { /* until we have the drawgrid use div main-grid*/ }
       <div className="main-grid">
-        <div className="left-side-bar"></div>
-        <canvas id="canvas"></canvas>
-        <div className="right-side-bar"></div>
+        <DrawGrid />
       </div>
-      
-      <ToolPanel />
-      {/* <Colors /> */}
     </div>
   );
 }
