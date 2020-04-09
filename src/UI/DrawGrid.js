@@ -16,6 +16,8 @@ export default class DrawGrid extends React.Component {
     }
 
     componentDidMount() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
         let canvasRect = this.canvasRef.current.getBoundingClientRect();
         this.canvasRef.current.width = canvasRect.width;
         this.canvasRef.current.height = canvasRect.height;
