@@ -2,13 +2,14 @@ import React from 'react';
 import ToolPanel from './ToolPanel'
 
 export default class DrawGrid extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { drawing: false, context: null };
         this.mouseDown = this.mouseDown.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
         this.mouseUp = this.mouseUp.bind(this);
         this.canvasRef = React.createRef();
+        this.ref = React.createRef();
     }
 
     componentDidMount() {
@@ -19,29 +20,14 @@ export default class DrawGrid extends React.Component {
 
     mouseDown(event) {
         let context = this.canvasRef.current.getContext('2d');
-        context.beginPath();
-        context.moveTo(event.clientX - 1, event.clientY - 1);
         this.setState({drawing: true});
+        this.ref.current.mouseDown(event, context);
     }
 
     mouseMove(event) {
-        if(this.state.drawing) {   
-            // let ctx = this.refs.canvasRef.getContext('2d');
-            // ctx.rect(event.clientX, event.clientY, 5, 5);
-            // ctx.shadowColor = 'gray';
-            // ctx.shadowBlur = 10;
-            // ctx.shadowOffsetX = 10;
-            // ctx.shadowOffsetY = 10;
-            // ctx.fillStyle = "red";
-            // ctx.fill();
-            // console.log(event.currentTarget.getBoundingClientRect());
-            // console.log(window.scrollX);
-            let context = this.canvasRef.current.getContext('2d');
-            context.strokeStyle = 'blue';
-            context.lineWidth = 5;
-            
-            context.lineTo(event.clientX,  event.clientY);
-            context.stroke();
+        let context = this.canvasRef.current.getContext('2d');
+        if(this.state.drawing) {
+            this.ref.current.mouseMove(event, context);
         }
     }
 
@@ -53,7 +39,7 @@ export default class DrawGrid extends React.Component {
         return(
             <div>
                 <canvas id="canvas" ref={this.canvasRef} onMouseDown={ this.mouseDown } onMouseMove={ this.mouseMove } onMouseUp={ this.mouseUp }></canvas>
-                <ToolPanel/>
+                <ToolPanel ref={this.ref} color={this.props.color}/>
             </div>
         );
     }

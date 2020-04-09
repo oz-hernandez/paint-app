@@ -67,28 +67,32 @@ html body {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         background-color: white;
     }
-    .tool-panel .PaintTool {
+    /* .tool-panel .PaintTool {
         margin-top: 10%;
         margin-bottom: 10%;
         padding: 0 10px 0 10px;
-    }
+    } */
 }
 
 [type=radio] {
   position: absolute;
+  margin-right: 10px;
   width: 0;
   height: 0;
   opacity: 0;
 }
 
 [type=radio] + img {
+  margin-right: 10px;
   background-color:rgb(255, 255, 255, 0.5);
   border-radius: 90%;
 }
 
 [type=radio]:checked + img {
-  background-color: white;
-  border-radius: 90%;
+  margin-right: 10px;
+  border-style: dotted;
+  border-radius: 0%;
 }
