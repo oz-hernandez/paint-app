@@ -1,11 +1,3 @@
-@media (max-width: 700px) {
-  .app {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-shrink: 1;
-  }
-}
 .App {
   margin: 0;
   padding: 0;
@@ -13,13 +5,22 @@
   flex-shrink: 1;
   flex-direction: column;
 }
-.app div[class="main-grid"] {
+@media (max-width: 700px) {
+  .App {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-shrink: 1;
+  }
+}
+.App div[class="main-grid"] {
   display: flex;
   flex-grow: 1;
 }
 canvas[id="canvas"] {
   display: flex;
   width: 100vw;
+  height: 100%;
   height: calc(var(--vh, 1vh) * 100);
   background: url("./assets/8bitbg.png") repeat;
 }
