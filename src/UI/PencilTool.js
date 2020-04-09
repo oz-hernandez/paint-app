@@ -2,6 +2,7 @@ import React, { forwardRef, useImperativeHandle } from 'react';
 
 const PencilTool = forwardRef((props, ref) => { 
     const mouseDown = (event, context) => {
+        context.globalCompositeOperation = 'source-over'
         context.beginPath();
         context.lineWidth = 5;
         context.strokeStyle = "blue"
