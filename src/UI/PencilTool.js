@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle } from 'react';
 
 const PencilTool = forwardRef((props, ref) => { 
     const mouseDown = (event, context) => {
-        // event.preventDefault();
         context.beginPath();
         context.lineWidth = 5;
         context.strokeStyle = "blue"
@@ -10,7 +9,6 @@ const PencilTool = forwardRef((props, ref) => {
     }
 
     const touchStart = (event, context) => {
-        // event.preventDefault();
         context.beginPath();
         context.lineWidth = props.lineWidth;
         context.strokeStyle = props.color;
@@ -18,7 +16,6 @@ const PencilTool = forwardRef((props, ref) => {
     }
 
     const mouseMove = (event, context) => {
-        // event.preventDefault();
         // context.strokeStyle = props.color;
         // context.lineWidth = props.lineWidth;
         context.lineTo(event.clientX,  event.clientY);
@@ -27,14 +24,9 @@ const PencilTool = forwardRef((props, ref) => {
     }
 
     const touchMove = (event, context) => {
-        // event.preventDefault();
-        // context.strokeStyle = props.color;
-        // context.lineWidth = props.lineWidth;
         context.lineTo(event.touches[0].clientX,  event.touches[0].clientY);
         context.stroke();
-        console.log("touch move in Pencil");
     }
-
 
     useImperativeHandle(ref, () => {
         return {

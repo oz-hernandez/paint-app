@@ -41,14 +41,12 @@ export default class DrawGrid extends React.Component {
     }
 
     touchStart(event) {
-        // event.preventDefault();
         let context = this.canvasRef.current.getContext('2d');
         this.setState({drawing: true});
         this.ref.current.touchStart(event, context);
     }
 
     touchMove(event) {
-        // event.preventDefault();
         let context = this.canvasRef.current.getContext('2d');
         if(this.state.drawing) {
             this.ref.current.touchMove(event, context);
