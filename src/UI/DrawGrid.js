@@ -8,6 +8,9 @@ export default class DrawGrid extends React.Component {
         this.mouseDown = this.mouseDown.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
         this.mouseUp = this.mouseUp.bind(this);
+        this.touchStart = this.touchStart.bind(this);
+        this.touchMove = this.touchMove.bind(this);
+        this.touchEnd = this.touchEnd.bind(this);
         this.canvasRef = React.createRef();
         this.ref = React.createRef();
     }
@@ -35,10 +38,29 @@ export default class DrawGrid extends React.Component {
         this.setState({drawing: false});
     }
 
+    touchStart(event) {
+        // event.preventDefault();
+        let context = this.canvasRef.current.getContext('2d');
+        this.setState({drawing: true});
+        this.ref.current.touchStart(event, context);
+    }
+
+    touchMove(event) {
+        // event.preventDefault();
+        let context = this.canvasRef.current.getContext('2d');
+        if(this.state.drawing) {
+            this.ref.current.touchMove(event, context);
+        }
+    }
+
+    touchEnd(event) {
+        this.setState({drawing: false});
+    }
+
     render() {
         return(
             <div>
-                <canvas id="canvas" ref={this.canvasRef} onMouseDown={ this.mouseDown } onMouseMove={ this.mouseMove } onMouseUp={ this.mouseUp }></canvas>
+                <canvas id="canvas" ref={this.canvasRef} onTouchStart={ this.touchStart } onTouchMove={ this.touchMove } onTouchEnd={ this.touchEnd } onMouseDown={ this.mouseDown } onMouseMove={ this.mouseMove } onMouseUp={ this.mouseUp }></canvas>
                 <ToolPanel ref={this.ref} color={this.props.color}/>
             </div>
         );

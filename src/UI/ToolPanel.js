@@ -26,9 +26,22 @@ export default class ToolPanel extends React.Component {
         }
     }
 
+    touchStart(event, context) {
+        if(active) {
+            this.activeItem.touchStart(event, context);
+            console.log("we're active in touchstart!");
+        }
+    }
+
     mouseMove(event, context) {
         if(active) {
             this.activeItem.mouseMove(event, context);
+        }
+    }
+
+    touchMove(event, context) {
+        if(active) {
+            this.activeItem.touchMove(event, context);
         }
     }
 
