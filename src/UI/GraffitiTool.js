@@ -1,32 +1,38 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 
-const BrushTool = forwardRef((props, ref) => { 
+const GraffitiTool = forwardRef((props, ref) => { 
     const mouseDown = (event, context, color) => {
+        context.beginPath();
+        context.lineWidth = 5;
         context.fillStyle = color;
         context.moveTo(event.clientX - 1, event.clientY - 1);
     }
 
-    const mouseMove = (event, context) => {        
-        context.rect(event.clientX, event.clientY, 5, 5);
+    const mouseMove = (event, context) => {
+        context.lineTo(event.clientX,  event.clientY);        
+        // context.rect(event.clientX, event.clientY, 20, 50);
         context.shadowColor = 'gray';
         context.shadowBlur = 10;
         context.shadowOffsetX = 20;
         context.shadowOffsetY = 5;
-        context.fill();
+        context.stroke();
+        // context.fill();
     }
 
     const touchStart = (event, context, color) => {
         context.fillStyle = color;
-        context.moveTo(event.clientX - 1, event.clientY - 1);
+        context.moveTo(event.touches[0].clientX - 1, event.touches[0].clientY - 1);
     }
 
     const touchMove = (event, context) => {
-        context.rect(event.clientX, event.clientY, 20, 20);
+        context.lineTo(event.touches[0].clientX,  event.touches[0].clientY);        
+        // context.rect(event.clientX, event.clientY, 20, 50);
         context.shadowColor = 'gray';
         context.shadowBlur = 10;
-        context.shadowOffsetX = 10;
-        context.shadowOffsetY = 10;
-        context.fill();
+        context.shadowOffsetX = 20;
+        context.shadowOffsetY = 5;
+        context.stroke();
+        // context.fill();
     }
 
     useImperativeHandle(ref, () => {
@@ -40,10 +46,10 @@ const BrushTool = forwardRef((props, ref) => {
 
     return (
         <label>
-            <input type="radio" name="painttools" value="brush" onClick={ props.handleClick } onTouchStart={ props.handleClick }/>
+            <input type="radio" name="painttools" value="graffiti" onClick={ props.handleClick } onTouchStart={ props.handleClick }/>
             <img src={props.src} alt={props.alt}  />
         </label>
     );
 });
 
-export default BrushTool;
+export default GraffitiTool;

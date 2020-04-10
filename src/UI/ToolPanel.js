@@ -1,7 +1,7 @@
 import React from 'react';
 import PencilTool from './PencilTool';
 import EraserTool from './EraserTool';
-import BrushTool from './BrushTool';
+import GraffitiTool from './GraffitiTool';
 
 let active = false;
 export default class ToolPanel extends React.Component {
@@ -48,7 +48,7 @@ export default class ToolPanel extends React.Component {
             <div className="tool-items">
                 <PencilTool ref={ (ref) => {this.activeTool['pencil'] = ref; }} handleClick={ this.handleClick } src={require('../assets/pencil.png')} tool="Pencil" />
                 <EraserTool ref={ (ref) => {this.activeTool['eraser'] = ref; }} handleClick={ this.handleClick } src={require('../assets/eraser.png')} tool="Eraser" />
-                <BrushTool ref={ (ref) => {this.activeTool['brush'] = ref; }} handleClick={ this.handleClick } src={require('../assets/brush.png')} tool="Brush" />
+                <GraffitiTool ref={ (ref) => {this.activeTool['graffiti'] = ref; }} handleClick={ this.handleClick } src={require('../assets/spray.png')} tool="Graffiti" />
             </div>
         );
     }
