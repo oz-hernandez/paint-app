@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PencilTool from './PencilTool';
 import EraserTool from './EraserTool';
-import SprayTool from './SprayTool';
+import BrushTool from './BrushTool';
 
 let active = false;
 export default class ToolPanel extends React.Component {
@@ -21,21 +21,19 @@ export default class ToolPanel extends React.Component {
 
     mouseDown(event, context, color) {
         if(active) {
-            console.log("color in toolPanel");
-            console.log(this.props.color);
             this.activeItem.mouseDown(event, context, color);
-        }
-    }
-
-    touchStart(event, context, color) {
-        if(active) {
-            this.activeItem.touchStart(event, context, color);
         }
     }
 
     mouseMove(event, context) {
         if(active) {
             this.activeItem.mouseMove(event, context);
+        }
+    }
+
+    touchStart(event, context, color) {
+        if(active) {
+            this.activeItem.touchStart(event, context, color);
         }
     }
 
@@ -47,9 +45,10 @@ export default class ToolPanel extends React.Component {
 
     render() {
         return (                
-            <div>
-                <PencilTool ref={ (ref) => {this.activeTool['pencil'] = ref; }} handleClick={ this.handleClick } src={require('../assets/pencil.png')} tool="Pencil" color={this.props.color} lineWidth={5}/>
-                <EraserTool ref={ (ref) => {this.activeTool['eraser'] = ref; }} handleClick={ this.handleClick } src={require('../assets/eraser.png')} tool="Pencil" lineWidth={5}/>
+            <div className="tool-items">
+                <PencilTool ref={ (ref) => {this.activeTool['pencil'] = ref; }} handleClick={ this.handleClick } src={require('../assets/pencil.png')} tool="Pencil" />
+                <EraserTool ref={ (ref) => {this.activeTool['eraser'] = ref; }} handleClick={ this.handleClick } src={require('../assets/eraser.png')} tool="Eraser" />
+                <BrushTool ref={ (ref) => {this.activeTool['brush'] = ref; }} handleClick={ this.handleClick } src={require('../assets/brush.png')} tool="Brush" />
             </div>
         );
     }

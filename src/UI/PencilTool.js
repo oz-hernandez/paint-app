@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useEffect, useState } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 
 const PencilTool = forwardRef((props, ref) => { 
     const mouseDown = (event, context, color) => {
@@ -8,10 +8,6 @@ const PencilTool = forwardRef((props, ref) => {
         context.strokeStyle = color;
         context.moveTo(event.clientX - 1, event.clientY - 1);
     }
-
-    const [color, setColor] = useState('black');
-    
-    useEffect( () => { setColor(props.color) } );
 
     const touchStart = (event, context, color) => {
         context.beginPath();

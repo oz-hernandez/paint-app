@@ -39,10 +39,15 @@ canvas[id="canvas"] {
   display: flex;
   width: 20vw;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: white;
   padding: 10px;
   margin: 5px;
+}
+
+.tool-items>label {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .custom-panel {

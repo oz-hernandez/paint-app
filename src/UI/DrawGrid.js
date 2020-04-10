@@ -17,8 +17,6 @@ export default class DrawGrid extends React.Component {
     }
 
     handleColorChange(event) {
-        console.log('setting color state in draw grid');
-        console.log(event.target.value);
         this.setState({ color: event.target.value });
     }
 
