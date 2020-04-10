@@ -1,39 +1,20 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 
-const EraserTool = forwardRef((props, ref) => { 
-    const mouseDown = (event, context) => {
-        context.globalCompositeOperation = 'destination-out'
-        context.beginPath();
+const EraserTool = forwardRef((props, ref) => {
+    const toolCallback = (context) => {
+        context.globalCompositeOperation = 'destination-out';
+        context.strokeStyle = "white";
         context.lineWidth = 5;
-        context.strokeStyle = "white"
-        context.moveTo(event.clientX - 1, event.clientY - 1);
-    }
-
-    const touchStart = (event, context) => {
-        context.beginPath();
-        context.lineWidth = props.lineWidth;
-        context.strokeStyle = props.color;
-        context.moveTo(event.touches[0].clientX - 1, event.touches[0].clientY - 1);
-    }
-
-    const mouseMove = (event, context) => {
-        context.lineTo(event.clientX,  event.clientY);
-        context.stroke();
-    }
-
-    const touchMove = (event, context) => {
-        context.lineTo(event.touches[0].clientX,  event.touches[0].clientY);
-        context.stroke();
+        context.shadowBlur = 0;
+        context.shadowOffsetX = 0;
+        context.shadowOffsetY = 0;
     }
 
     useImperativeHandle(ref, () => {
         return {
-          mouseMove: mouseMove,
-          mouseDown: mouseDown,
-          touchStart: touchStart,
-          touchMove: touchMove
+          toolCallback: toolCallback
         };
-      });
+    });
 
     return (
         <label>

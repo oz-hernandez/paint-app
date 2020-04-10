@@ -1,46 +1,21 @@
-import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 
-const PencilTool = forwardRef((props, ref) => { 
-    const [context, setContext] = useState(props.context);
+const PencilTool = forwardRef((props, ref) =>  { 
 
-    const mouseDown = (event) => {
+    const toolCallback = (context) => {
         context.globalCompositeOperation = 'source-over'
-        context.beginPath();
-        context.moveTo(event.clientX - 1, event.clientY - 1);
-    }
-
-    useEffect(() => {
-        if(props.context) {
-            setContext(props.context);
-            props.context.strokeStyle = props.color;
-            props.context.lineWidth = 5;
-        }
-        
-    }, [props.color, props.context]);
-    
-    const touchStart = (event) => {
-        context.beginPath();
-        context.moveTo(event.touches[0].clientX - 1, event.touches[0].clientY - 1);
-    }
-
-    const mouseMove = (event, context) => {
-        context.lineTo(event.clientX,  event.clientY);
-        context.stroke();
-    }
-
-    const touchMove = (event, context) => {
-        context.lineTo(event.touches[0].clientX,  event.touches[0].clientY);
-        context.stroke();
+        context.lineWidth = 5;
+        context.strokeStyle = props.color;
+        context.shadowBlur = 0;
+        context.shadowOffsetX = 0;
+        context.shadowOffsetY = 0;
     }
 
     useImperativeHandle(ref, () => {
         return {
-            mouseDown: mouseDown,
-            touchStart: touchStart,
-            mouseMove: mouseMove,
-            touchMove: touchMove  
+          toolCallback: toolCallback
         };
-      });
+    });
 
     return (
         <label>

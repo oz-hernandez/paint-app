@@ -30,15 +30,15 @@ export default class DrawGrid extends React.Component {
     }
 
     mouseDown(event) {
-        let context = this.canvasRef.current.getContext('2d');
         this.setState({drawing: true});
-        this.ref.current.mouseDown(event, context, this.state.color);
+        this.state.context.beginPath();
+        this.state.context.moveTo(event.clientX - 1, event.clientY - 1);
     }
 
     mouseMove(event) {
-        let context = this.canvasRef.current.getContext('2d');
         if(this.state.drawing) {
-            this.ref.current.mouseMove(event, context);
+            this.state.context.lineTo(event.clientX,  event.clientY);
+            this.state.context.stroke();
         }
     }
 
