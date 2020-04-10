@@ -1,18 +1,25 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 
 const PencilTool = forwardRef((props, ref) => { 
-    const mouseDown = (event, context, color) => {
+    const [context, setContext] = useState(props.context);
+
+    const mouseDown = (event) => {
         context.globalCompositeOperation = 'source-over'
         context.beginPath();
-        context.lineWidth = 5;
-        context.strokeStyle = color;
         context.moveTo(event.clientX - 1, event.clientY - 1);
     }
 
-    const touchStart = (event, context, color) => {
+    useEffect(() => {
+        if(props.context) {
+            setContext(props.context);
+            props.context.strokeStyle = props.color;
+            props.context.lineWidth = 5;
+        }
+        
+    }, [props.color, props.context]);
+    
+    const touchStart = (event) => {
         context.beginPath();
-        context.lineWidth = props.lineWidth;
-        context.strokeStyle = color;
         context.moveTo(event.touches[0].clientX - 1, event.touches[0].clientY - 1);
     }
 

@@ -1,38 +1,43 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 
 const GraffitiTool = forwardRef((props, ref) => { 
-    const mouseDown = (event, context, color) => {
+    const [context, setContext] = useState(props.context);
+
+    const mouseDown = (event) => {
         context.beginPath();
         context.lineWidth = 5;
-        context.fillStyle = color;
         context.moveTo(event.clientX - 1, event.clientY - 1);
     }
 
-    const mouseMove = (event, context) => {
+    useEffect(() => {
+        if(props.context) {
+            setContext(props.context);
+            props.context.StrokeStyle = props.color;
+            props.context.lineWidth = 5;
+        }
+        
+    }, [props.color, props.context]);
+
+    const mouseMove = (event) => {
         context.lineTo(event.clientX,  event.clientY);        
-        // context.rect(event.clientX, event.clientY, 20, 50);
         context.shadowColor = 'gray';
-        context.shadowBlur = 10;
-        context.shadowOffsetX = 20;
-        context.shadowOffsetY = 5;
+        context.shadowBlur = 20;
+        context.shadowOffsetX = 4;
+        context.shadowOffsetY = 4;
         context.stroke();
-        // context.fill();
     }
 
-    const touchStart = (event, context, color) => {
-        context.fillStyle = color;
+    const touchStart = (event) => {
         context.moveTo(event.touches[0].clientX - 1, event.touches[0].clientY - 1);
     }
 
-    const touchMove = (event, context) => {
+    const touchMove = (event) => {
         context.lineTo(event.touches[0].clientX,  event.touches[0].clientY);        
-        // context.rect(event.clientX, event.clientY, 20, 50);
         context.shadowColor = 'gray';
         context.shadowBlur = 10;
-        context.shadowOffsetX = 20;
-        context.shadowOffsetY = 5;
+        context.shadowOffsetX = 4;
+        context.shadowOffsetY = 4;
         context.stroke();
-        // context.fill();
     }
 
     useImperativeHandle(ref, () => {

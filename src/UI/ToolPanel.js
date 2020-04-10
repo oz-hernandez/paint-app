@@ -46,9 +46,9 @@ export default class ToolPanel extends React.Component {
     render() {
         return (                
             <div className="tool-items">
-                <PencilTool ref={ (ref) => {this.activeTool['pencil'] = ref; }} handleClick={ this.handleClick } src={require('../assets/pencil.png')} tool="Pencil" />
+                <PencilTool ref={ (ref) => {this.activeTool['pencil'] = ref; }} handleClick={ this.handleClick } src={require('../assets/pencil.png')} tool="Pencil" color={this.props.color} context={this.props.context}/>
                 <EraserTool ref={ (ref) => {this.activeTool['eraser'] = ref; }} handleClick={ this.handleClick } src={require('../assets/eraser.png')} tool="Eraser" />
-                <GraffitiTool ref={ (ref) => {this.activeTool['graffiti'] = ref; }} handleClick={ this.handleClick } src={require('../assets/spray.png')} tool="Graffiti" />
+                <GraffitiTool ref={ (ref) => {this.activeTool['graffiti'] = ref; }} handleClick={ this.handleClick } src={require('../assets/spray.png')} tool="Graffiti" color={this.props.color} context={this.props.context}/>
             </div>
         );
     }

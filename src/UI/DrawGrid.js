@@ -26,6 +26,7 @@ export default class DrawGrid extends React.Component {
         let canvasRect = this.canvasRef.current.getBoundingClientRect();
         this.canvasRef.current.width = canvasRect.width;
         this.canvasRef.current.height = canvasRect.height;
+        this.setState({ context: this.canvasRef.current.getContext('2d') });
     }
 
     mouseDown(event) {
@@ -68,7 +69,7 @@ export default class DrawGrid extends React.Component {
                 <canvas id="canvas" ref={this.canvasRef} onTouchStart={ this.touchStart } onTouchMove={ this.touchMove } onTouchEnd={ this.touchEnd } onMouseDown={ this.mouseDown } onMouseMove={ this.mouseMove } onMouseUp={ this.mouseUp }></canvas>
                 <div className="bottom-panel">
                     <div className="tool-panel">
-                        <ToolPanel ref={this.ref} color={this.state.color} />
+                        <ToolPanel ref={this.ref} color={this.state.color} context={this.state.context} />
                     </div>
                     <div className="custom-panel">
                         <input ref={this.color} type="color" name="color-picker" onChange={ this.handleColorChange }/>
