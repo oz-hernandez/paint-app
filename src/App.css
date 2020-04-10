@@ -45,6 +45,15 @@ canvas[id="canvas"] {
   margin: 5px;
 }
 
+.custom-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  padding: 10px;
+  margin: 5px;
+}
+
 @media (max-width: 700px) {
     .bottom-panel {
         display: flex;
@@ -60,6 +69,14 @@ canvas[id="canvas"] {
         flex-direction: column;
         justify-content: center;
         background-color: white;
+    }
+    .custom-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: white;
+      padding: 10px;
+      margin: 5px;
     }
 }
 

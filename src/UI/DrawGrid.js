@@ -4,15 +4,22 @@ import ToolPanel from './ToolPanel'
 export default class DrawGrid extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { drawing: false, context: null };
+        this.state = { drawing: false, context: null, color: "black" };
         this.mouseDown = this.mouseDown.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
         this.mouseUp = this.mouseUp.bind(this);
         this.touchStart = this.touchStart.bind(this);
         this.touchMove = this.touchMove.bind(this);
         this.touchEnd = this.touchEnd.bind(this);
+        this.handleColorChange = this.handleColorChange.bind(this);
         this.canvasRef = React.createRef();
         this.ref = React.createRef();
+    }
+
+    handleColorChange(event) {
+        console.log('setting color state in draw grid');
+        console.log(event.target.value);
+        this.setState({ color: event.target.value });
     }
 
     componentDidMount() {
@@ -26,7 +33,7 @@ export default class DrawGrid extends React.Component {
     mouseDown(event) {
         let context = this.canvasRef.current.getContext('2d');
         this.setState({drawing: true});
-        this.ref.current.mouseDown(event, context);
+        this.ref.current.mouseDown(event, context, this.state.color);
     }
 
     mouseMove(event) {
@@ -43,7 +50,7 @@ export default class DrawGrid extends React.Component {
     touchStart(event) {
         let context = this.canvasRef.current.getContext('2d');
         this.setState({drawing: true});
-        this.ref.current.touchStart(event, context);
+        this.ref.current.touchStart(event, context, this.state.color);
     }
 
     touchMove(event) {
@@ -61,7 +68,14 @@ export default class DrawGrid extends React.Component {
         return(
             <div>
                 <canvas id="canvas" ref={this.canvasRef} onTouchStart={ this.touchStart } onTouchMove={ this.touchMove } onTouchEnd={ this.touchEnd } onMouseDown={ this.mouseDown } onMouseMove={ this.mouseMove } onMouseUp={ this.mouseUp }></canvas>
-                <ToolPanel ref={this.ref} color={this.props.color}/>
+                <div className="bottom-panel">
+                    <div className="tool-panel">
+                        <ToolPanel ref={this.ref} color={this.state.color} />
+                    </div>
+                    <div className="custom-panel">
+                        <input ref={this.color} type="color" name="color-picker" onChange={ this.handleColorChange }/>
+                    </div>
+                </div>
             </div>
         );
     }

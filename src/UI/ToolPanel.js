@@ -19,17 +19,17 @@ export default class ToolPanel extends React.Component {
         active = true;
     }
 
-    mouseDown(event, context) {
+    mouseDown(event, context, color) {
         if(active) {
-            this.activeItem.mouseDown(event, context);
-            console.log("we're active!");
+            console.log("color in toolPanel");
+            console.log(this.props.color);
+            this.activeItem.mouseDown(event, context, color);
         }
     }
 
-    touchStart(event, context) {
+    touchStart(event, context, color) {
         if(active) {
-            this.activeItem.touchStart(event, context);
-            console.log("we're active in touchstart!");
+            this.activeItem.touchStart(event, context, color);
         }
     }
 
@@ -46,12 +46,10 @@ export default class ToolPanel extends React.Component {
     }
 
     render() {
-        return (
-            <div className="bottom-panel">
-                <div className="tool-panel">
-                    <PencilTool ref={ (ref) => {this.activeTool['pencil'] = ref; }} handleClick={ this.handleClick } src={require('../assets/pencil.png')} tool="Pencil" color={"blue"} lineWidth={5}/>
-                    <EraserTool ref={ (ref) => {this.activeTool['eraser'] = ref; }} handleClick={ this.handleClick } src={require('../assets/eraser.png')} tool="Pencil" color={"blue"} lineWidth={5}/>
-                </div>
+        return (                
+            <div>
+                <PencilTool ref={ (ref) => {this.activeTool['pencil'] = ref; }} handleClick={ this.handleClick } src={require('../assets/pencil.png')} tool="Pencil" color={this.props.color} lineWidth={5}/>
+                <EraserTool ref={ (ref) => {this.activeTool['eraser'] = ref; }} handleClick={ this.handleClick } src={require('../assets/eraser.png')} tool="Pencil" lineWidth={5}/>
             </div>
         );
     }

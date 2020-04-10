@@ -17,11 +17,8 @@ const EraserTool = forwardRef((props, ref) => {
     }
 
     const mouseMove = (event, context) => {
-        // context.strokeStyle = props.color;
-        // context.lineWidth = props.lineWidth;
         context.lineTo(event.clientX,  event.clientY);
         context.stroke();
-        console.log("mouse down in Pencil");
     }
 
     const touchMove = (event, context) => {
