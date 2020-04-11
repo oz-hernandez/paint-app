@@ -1,19 +1,13 @@
-import React, { forwardRef, useImperativeHandle, useEffect } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 
 const PencilTool = forwardRef((props, ref) =>  {
-    const toolCallback = (context, color) => {
+    const toolCallback = (context) => {
         context.globalCompositeOperation = 'source-over'
         context.lineWidth = 5;
         context.shadowBlur = 0;
         context.shadowOffsetX = 0;
         context.shadowOffsetY = 0;
     }
-
-    useEffect(() => {
-        if(props.color && props.context) {
-            props.context.strokeStyle = props.color;
-        }
-    });
 
     useImperativeHandle(ref, () => {
         return {

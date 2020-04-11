@@ -1,7 +1,7 @@
-import React, { forwardRef, useImperativeHandle, useEffect } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 
 const GraffitiTool = forwardRef((props, ref) => {
-    const toolCallback = (context, color) => {
+    const toolCallback = (context) => {
         context.globalCompositeOperation = 'source-over'
         context.lineWidth = 5;
         context.shadowColor = 'gray';
@@ -9,12 +9,6 @@ const GraffitiTool = forwardRef((props, ref) => {
         context.shadowOffsetX = 4;
         context.shadowOffsetY = 4;
     }
-
-    useEffect(() => {
-        if(props.color && props.context) {
-            props.context.strokeStyle = props.color;
-        }
-    });
 
     useImperativeHandle(ref, () => {
         return {
