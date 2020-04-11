@@ -4,7 +4,7 @@ const EraserTool = forwardRef((props, ref) => {
     const toolCallback = (context) => {
         context.globalCompositeOperation = 'destination-out';
         context.strokeStyle = "white";
-        context.lineWidth = 5;
+        context.lineWidth = 15;
         context.shadowBlur = 0;
         context.shadowOffsetX = 0;
         context.shadowOffsetY = 0;

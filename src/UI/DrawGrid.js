@@ -28,6 +28,7 @@ export default class DrawGrid extends React.Component {
         this.canvasRef.current.width = canvasRect.width;
         this.canvasRef.current.height = canvasRect.height;
         this.setState({ context: this.canvasRef.current.getContext('2d') });
+        this.canvasRef.current.getContext('2d').globalCompositeOperation = 'destination-out';
     }
 
     mouseDown(event) {
