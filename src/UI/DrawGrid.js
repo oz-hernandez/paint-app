@@ -18,6 +18,7 @@ export default class DrawGrid extends React.Component {
 
     handleColorChange(event) {
         this.setState({ color: event.target.value });
+        console.log(this.state.color);
     }
 
     componentDidMount() {
@@ -30,6 +31,7 @@ export default class DrawGrid extends React.Component {
     }
 
     mouseDown(event) {
+        console.log("mouse down. current color: " + this.state.color);
         this.setState({drawing: true});
         this.state.context.beginPath();
         this.state.context.moveTo(event.clientX - 1, event.clientY - 1);
@@ -47,15 +49,15 @@ export default class DrawGrid extends React.Component {
     }
 
     touchStart(event) {
-        let context = this.canvasRef.current.getContext('2d');
         this.setState({drawing: true});
-        this.ref.current.touchStart(event, context, this.state.color);
+        this.state.context.beginPath();
+        this.state.context.moveTo(event.touches[0].clientX - 1, event.touches[0].clientY - 1);
     }
 
     touchMove(event) {
-        let context = this.canvasRef.current.getContext('2d');
         if(this.state.drawing) {
-            this.ref.current.touchMove(event, context);
+            this.state.context.lineTo(event.touches[0].clientX,  event.touches[0].clientY);
+            this.state.context.stroke();
         }
     }
 

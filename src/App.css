@@ -63,6 +63,7 @@ canvas[id="canvas"] {
     .bottom-panel {
         display: flex;
         position: absolute;
+        flex-direction: column;
         height: 100vh;
         width: 20vw;
         align-items: center;
@@ -71,12 +72,20 @@ canvas[id="canvas"] {
     }
     .tool-panel {
         display: flex;
+        flex: 1;
+        width: 50px;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         background-color: white;
+    }
+    .tool-items>label {
+      padding-left: 15px;
+      padding-right: 15px;
     }
     .custom-panel {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: space-around;
       background-color: white;
