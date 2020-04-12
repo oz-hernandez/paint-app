@@ -16,9 +16,9 @@ const PencilTool = forwardRef((props, ref) =>  {
     });
 
     return (
-        <label>
+        <label className="tool-label" id="pencil" data-tooltip="Pencil Tool">
             <input type="radio" name="painttools" value="pencil" onClick={ props.handleClick } onTouchStart={ props.handleClick }/>
-            <img src={props.src} alt={props.alt}  />
+            <img src={props.src} alt={props.alt} />
         </label>
     );
 });
