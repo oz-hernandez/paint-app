@@ -104,6 +104,7 @@
 }
 #pencil[data-tooltip]:hover::after, #eraser[data-tooltip]:hover::after, #graffiti[data-tooltip]:hover::after,
 #pencil[data-tooltip]:hover::before, #eraser[data-tooltip]:hover::before, #graffiti[data-tooltip]:hover::before {
+  transition-delay:1s;
 	opacity: 1;
 }
 
