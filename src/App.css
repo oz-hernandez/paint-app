@@ -58,7 +58,7 @@
 	position: relative;
   text-decoration: none;
 }
-#pencil[data-tooltip]:after, #eraser[data-tooltip]:after, #graffiti[data-tooltip]:after {
+#pencil[data-tooltip]::after, #eraser[data-tooltip]::after, #graffiti[data-tooltip]::after {
 	content: attr(data-tooltip);
 	position: absolute;
 	bottom: 130%;
@@ -80,14 +80,14 @@
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
 }
-#pencil[data-tooltip]:before, #eraser[data-tooltip]:before, #graffiti[data-tooltip]:before {
+#pencil[data-tooltip]::before, #eraser[data-tooltip]::before, #graffiti[data-tooltip]::before {
 	content: "";
 	position: absolute;
 	width: 0;
 	height: 0;
 	border-top: 20px solid #ffcb66;
 	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
+  border-right: 20px solid transparent;
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
@@ -96,72 +96,16 @@
 	opacity: 0;
   bottom: 115%;
 }
-#pencil[data-tooltip]:hover:after, #eraser[data-tooltip]:hover:after, #graffiti[data-tooltip]:hover:after {
+#pencil[data-tooltip]:hover::after, #eraser[data-tooltip]:hover::after, #graffiti[data-tooltip]:hover::after {
 	bottom: 100%;
 }
-#pencil[data-tooltip]:hover:before, #eraser[data-tooltip]:hover:before, #graffiti[data-tooltip]:hover:before{
+#pencil[data-tooltip]:hover::before, #eraser[data-tooltip]:hover::before, #graffiti[data-tooltip]:hover::before{
 	bottom: 100%;
 }
-#pencil[data-tooltip]:hover:after, #eraser[data-tooltip]:hover:after, #graffiti[data-tooltip]:hover:after,
-#pencil[data-tooltip]:hover:before, #eraser[data-tooltip]:hover:before, #graffiti[data-tooltip]:hover:before {
+#pencil[data-tooltip]:hover::after, #eraser[data-tooltip]:hover::after, #graffiti[data-tooltip]:hover::after,
+#pencil[data-tooltip]:hover::before, #eraser[data-tooltip]:hover::before, #graffiti[data-tooltip]:hover::before {
 	opacity: 1;
 }
-
-/* #eraser[data-tooltip] {
-	display: inline-block;
-	position: relative;
-  text-decoration: none;
-}
-#eraser[data-tooltip]:after {
-	content: attr(data-tooltip);
-	position: absolute;
-	bottom: 130%;
-	left: 20%;
-	background: #ffcb66;
-  padding: 5px 15px;
-  margin-bottom: 8px;
-	color: black;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	-ms-border-radius: 10px;
-	-o-border-radius: 10px;
-	border-radius: 10px;
-	white-space: nowrap;
-	opacity: 0;
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
-}
-#eraser[data-tooltip]:before {
-	content: "";
-	position: absolute;
-	width: 0;
-	height: 0;
-	border-top: 20px solid #ffcb66;
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
-	opacity: 0;
-  bottom: 115%;
-}
-#eraser[data-tooltip]:hover:after {
-	bottom: 100%;
-}
-#eraser[data-tooltip]:hover:before {
-	bottom: 100%;
-}
-#eraser[data-tooltip]:hover:after,
-#eraser[data-tooltip]:hover:before {
-	opacity: 1;
-} */
-
-
 
 .custom-panel {
   display: flex;
