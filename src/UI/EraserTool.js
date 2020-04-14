@@ -17,7 +17,7 @@ const EraserTool = forwardRef((props, ref) => {
     });
 
     return (
-        <label className="tool-label" id="eraser" data-tooltip="Eraser Tool">
+        <label className="tool-label" id="tool" data-tooltip="Eraser Tool">
             <input type="radio" name="painttools" value="eraser" onClick={ props.handleClick } onTouchStart={ props.handleClick }/>
             <img src={props.src} alt={props.alt} />
         </label>

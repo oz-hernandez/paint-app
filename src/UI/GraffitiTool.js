@@ -17,7 +17,7 @@ const GraffitiTool = forwardRef((props, ref) => {
     });
 
     return (
-        <label className="tool-label" id="graffiti" data-tooltip="Graffiti Tool">
+        <label className="tool-label" id="tool" data-tooltip="Graffiti Tool">
             <input type="radio" name="painttools" value="graffiti" onClick={ props.handleClick } onTouchStart={ props.handleClick }/>
             <img src={props.src} alt={props.alt} />
         </label>

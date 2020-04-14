@@ -53,12 +53,12 @@
   padding-right: 15px;
 }
 
-#pencil[data-tooltip], #eraser[data-tooltip], #graffiti[data-tooltip] {
+div[class="tool-items"] label[id='tool'] {
 	display: inline-block;
 	position: relative;
   text-decoration: none;
 }
-#pencil[data-tooltip]::after, #eraser[data-tooltip]::after, #graffiti[data-tooltip]::after {
+div[class="tool-items"] label[id='tool'][data-tooltip]::after {
 	content: attr(data-tooltip);
 	position: absolute;
 	bottom: 130%;
@@ -80,7 +80,7 @@
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
 }
-#pencil[data-tooltip]::before, #eraser[data-tooltip]::before, #graffiti[data-tooltip]::before {
+div[class="tool-items"] label[id='tool'][data-tooltip]::before {
 	content: "";
 	position: absolute;
 	width: 0;
@@ -96,14 +96,14 @@
 	opacity: 0;
   bottom: 115%;
 }
-#pencil[data-tooltip]:hover::after, #eraser[data-tooltip]:hover::after, #graffiti[data-tooltip]:hover::after {
+div[class="tool-items"] label[id='tool'][data-tooltip]:hover::after {
 	bottom: 100%;
 }
-#pencil[data-tooltip]:hover::before, #eraser[data-tooltip]:hover::before, #graffiti[data-tooltip]:hover::before{
+div[class="tool-items"] label[id='tool'][data-tooltip]:hover::before {
 	bottom: 100%;
 }
-#pencil[data-tooltip]:hover::after, #eraser[data-tooltip]:hover::after, #graffiti[data-tooltip]:hover::after,
-#pencil[data-tooltip]:hover::before, #eraser[data-tooltip]:hover::before, #graffiti[data-tooltip]:hover::before {
+div[class="tool-items"] label[id='tool'][data-tooltip]:hover::after,
+div[class="tool-items"] label[id='tool'][data-tooltip]:hover::before {
   transition-delay:1s;
 	opacity: 1;
 }
