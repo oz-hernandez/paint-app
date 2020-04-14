@@ -44,7 +44,7 @@ export default class DrawGrid extends React.Component {
         }
     }
 
-    mouseUp(event) {
+    mouseUp() {
         this.setState({drawing: false});
     }
 
@@ -61,7 +61,7 @@ export default class DrawGrid extends React.Component {
         }
     }
 
-    touchEnd(event) {
+    touchEnd() {
         this.setState({drawing: false});
     }
 
