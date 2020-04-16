@@ -49,6 +49,7 @@ export default class DrawGrid extends React.Component {
     }
 
     touchStart(event) {
+        this.canvasRef.current.getContext('2d').strokeStyle = this.state.color;
         this.setState({drawing: true});
         this.state.context.beginPath();
         this.state.context.moveTo(event.touches[0].clientX - 1, event.touches[0].clientY - 1);
