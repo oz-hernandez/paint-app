@@ -52,6 +52,7 @@
   padding-right: 15px;
 }
 
+
 div[class="tool-items"] label[id='tool'] {
 	display: inline-block;
 	position: relative;
@@ -120,6 +121,7 @@ div[class="tool-items"] label[id='tool'][data-tooltip]:hover::before {
     .bottom-panel {
         display: flex;
         position: absolute;
+        left: 0;
         flex-direction: column;
         height: 100vh;
         width: 20vw;
@@ -129,16 +131,17 @@ div[class="tool-items"] label[id='tool'][data-tooltip]:hover::before {
     }
     .tool-panel {
         display: flex;
-        flex: 1;
         width: 50px;
+        height: 30vh;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: white;
     }
     .tool-items label {
-      padding-left: 15px;
-      padding-right: 15px;
+      display: flex;
+      justify-content: center;
+      margin: 20px;
     }
     .custom-panel {
       display: flex;
