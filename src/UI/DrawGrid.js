@@ -12,6 +12,7 @@ export default class DrawGrid extends React.Component {
         this.touchMove = this.touchMove.bind(this);
         this.touchEnd = this.touchEnd.bind(this);
         this.handleColorChange = this.handleColorChange.bind(this);
+        this.clearCanvas = this.clearCanvas.bind(this);
         this.canvasRef = React.createRef();
         this.ref = React.createRef();
     }
@@ -20,12 +21,13 @@ export default class DrawGrid extends React.Component {
         this.setState({ color: event.target.value });
     }
 
+    clearCanvas() {
+        this.state.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+
     componentDidMount() {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        let canvasRect = this.canvasRef.current.getBoundingClientRect();
-        this.canvasRef.current.width = canvasRect.width;
-        this.canvasRef.current.height = canvasRect.height;
+        this.canvasRef.current.width = window.innerWidth;
+        this.canvasRef.current.height = window.innerHeight;
         this.setState({ context: this.canvasRef.current.getContext('2d') });
         this.canvasRef.current.getContext('2d').globalCompositeOperation = 'destination-out';
     }
@@ -76,6 +78,11 @@ export default class DrawGrid extends React.Component {
                     </div>
                     <div className="custom-panel">
                         <input ref={this.color} type="color" name="color-picker" onChange={ this.handleColorChange }/>
+                    </div>
+                    <div className="remove">
+                        <button class="icon-btn add-btn" onClick={this.clearCanvas}>  
+                            <div class="btn-txt">Clear Canvas</div>
+                        </button>
                     </div>
                 </div>
             </div>
