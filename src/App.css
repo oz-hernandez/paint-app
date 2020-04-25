@@ -24,9 +24,18 @@
   background: url("./assets/8bitbg.png") repeat;
 }
 
+@media (max-width: 700px) {
+  #canvas {
+    background: url("./assets/8bitbg.png") repeat;
+    position: fixed;
+    width: 100vw;
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
 .bottom-panel {
   display: flex;
-  position: absolute;
+  position: fixed;
   width: 100vw;
   bottom: 0;
   padding-left: 2%;
@@ -38,7 +47,7 @@
 
 .tool-panel {
   display: flex;
-  width: 20vw;
+  min-width: 15vw;
   align-items: center;
   flex-wrap: nowrap;
   justify-content: space-evenly;
@@ -50,6 +59,12 @@
 .tool-items label[class="tool-label"] {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.tool-items {
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 15vw;
 }
 
 div[class="tool-items"] label[id='tool'] {
@@ -120,7 +135,7 @@ div[class="tool-items"] label[id='tool'][data-tooltip]:hover::before {
 @media (max-width: 700px) {
     .bottom-panel {
         display: flex;
-        position: absolute;
+        position: fixed;
         left: 0;
         flex-direction: column;
         height: 100vh;
@@ -131,12 +146,18 @@ div[class="tool-items"] label[id='tool'][data-tooltip]:hover::before {
     }
     .tool-panel {
         display: flex;
-        width: 50px;
-        height: 30vh;
+        width: 40px;
+        min-height: 40vh;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: white;
+    }
+    .tool-items {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      min-height: 10vh;
     }
     .tool-items label {
       display: flex;
@@ -191,6 +212,12 @@ div.remove {
 }
 .add-btn:hover {
   width: 120px;
+}
+
+@media (max-width: 700px) {
+  .add-btn:hover {
+    width: 70px;
+  }
 }
 .add-btn::before,
 .add-btn::after {

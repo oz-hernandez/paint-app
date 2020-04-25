@@ -35,6 +35,12 @@ export default class DrawGrid extends React.Component {
     }
 
     componentDidMount() {
+        window.addEventListener("orientationchange", event => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
         this.canvasRef.current.width = window.innerWidth;
         this.canvasRef.current.height = window.innerHeight;
         this.setState({ context: this.canvasRef.current.getContext('2d') });
@@ -89,13 +95,13 @@ export default class DrawGrid extends React.Component {
                         <input ref={this.color} type="color" name="color-picker" onChange={ this.handleColorChange }/>
                     </div>
                     <div className="remove">
-                        <button class="icon-btn add-btn" onClick={this.clearCanvas}>  
-                            <div class="btn-txt">Clear Canvas</div>
+                        <button className="icon-btn add-btn" onClick={this.clearCanvas}>  
+                            <div className="btn-txt">Clear Canvas</div>
                         </button>
                     </div>
                     <div className="remove">
-                        <button class="icon-btn add-btn" onClick={this.pickColor}>  
-                            <div class="btn-txt">Random Color</div>
+                        <button className="icon-btn add-btn" onClick={this.pickColor}>  
+                            <div className="btn-txt">Random Color</div>
                         </button>
                     </div>
                 </div>
