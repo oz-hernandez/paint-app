@@ -1,5 +1,6 @@
 import React from 'react';
-import ToolPanel from './ToolPanel'
+import ToolPanel from './ToolPanel';
+import { default as getRandomColor } from './FetchColor';
 
 export default class DrawGrid extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class DrawGrid extends React.Component {
         this.touchEnd = this.touchEnd.bind(this);
         this.handleColorChange = this.handleColorChange.bind(this);
         this.clearCanvas = this.clearCanvas.bind(this);
+        this.pickColor = this.pickColor.bind(this);
         this.canvasRef = React.createRef();
         this.ref = React.createRef();
     }
@@ -23,6 +25,13 @@ export default class DrawGrid extends React.Component {
 
     clearCanvas() {
         this.state.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+
+    pickColor() {        
+        getRandomColor("http://www.colr.org/json/color/random").then((color) => {
+            console.log(color['new_color']);
+            this.setState({ color: "#" + color['new_color'] });
+        }).catch((error) => {console.log("an error occured: " + error)});    
     }
 
     componentDidMount() {
@@ -74,7 +83,7 @@ export default class DrawGrid extends React.Component {
                 <canvas id="canvas" ref={this.canvasRef} onTouchStart={ this.touchStart } onTouchMove={ this.touchMove } onTouchEnd={ this.touchEnd } onMouseDown={ this.mouseDown } onMouseMove={ this.mouseMove } onMouseUp={ this.mouseUp }></canvas>
                 <div className="bottom-panel">
                     <div className="tool-panel">
-                        <ToolPanel ref={this.ref} color={this.state.color} context={this.state.context} />
+                        <ToolPanel ref={this.ref} context={this.state.context} />
                     </div>
                     <div className="custom-panel">
                         <input ref={this.color} type="color" name="color-picker" onChange={ this.handleColorChange }/>
@@ -82,6 +91,11 @@ export default class DrawGrid extends React.Component {
                     <div className="remove">
                         <button class="icon-btn add-btn" onClick={this.clearCanvas}>  
                             <div class="btn-txt">Clear Canvas</div>
+                        </button>
+                    </div>
+                    <div className="remove">
+                        <button class="icon-btn add-btn" onClick={this.pickColor}>  
+                            <div class="btn-txt">Random Color</div>
                         </button>
                     </div>
                 </div>
